@@ -1,0 +1,112 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "string", "name": "batchId", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "medicineName", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "strength", "type": "string" },
+      { "indexed": true, "internalType": "address", "name": "manufacturer", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "timestamp", "type": "uint256" }
+    ],
+    "name": "BatchCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "string", "name": "batchId", "type": "string" },
+      { "indexed": false, "internalType": "enum MedicineTracker.SupplyChainStage", "name": "stage", "type": "uint8" },
+      { "indexed": false, "internalType": "string", "name": "stageName", "type": "string" },
+      { "indexed": false, "internalType": "string", "name": "newLocation", "type": "string" },
+      { "indexed": true, "internalType": "address", "name": "transferredBy", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "timestamp", "type": "uint256" }
+    ],
+    "name": "BatchTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "getAllBatchIds",
+    "outputs": [{ "internalType": "string[]", "name": "", "type": "string[]" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "string", "name": "_batchId", "type": "string" }],
+    "name": "getBatch",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "string", "name": "batchId", "type": "string" },
+          { "internalType": "string", "name": "medicineName", "type": "string" },
+          { "internalType": "string", "name": "strength", "type": "string" },
+          { "internalType": "string", "name": "mfgDate", "type": "string" },
+          { "internalType": "string", "name": "expDate", "type": "string" },
+          { "internalType": "string", "name": "currentLocation", "type": "string" },
+          { "internalType": "enum MedicineTracker.SupplyChainStage", "name": "currentStage", "type": "uint8" },
+          { "internalType": "address", "name": "currentHolder", "type": "address" },
+          { "internalType": "bool", "name": "exists", "type": "bool" },
+          { "internalType": "uint256", "name": "eventCount", "type": "uint256" }
+        ],
+        "internalType": "struct MedicineTracker.MedicineBatch",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "string", "name": "_batchId", "type": "string" }],
+    "name": "getBatchEvents",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "timestamp", "type": "uint256" },
+          { "internalType": "enum MedicineTracker.SupplyChainStage", "name": "stage", "type": "uint8" },
+          { "internalType": "string", "name": "stageName", "type": "string" },
+          { "internalType": "string", "name": "location", "type": "string" },
+          { "internalType": "address", "name": "recordedBy", "type": "address" },
+          { "internalType": "string", "name": "actorName", "type": "string" },
+          { "internalType": "string", "name": "notes", "type": "string" },
+          { "internalType": "bytes32", "name": "previousHash", "type": "bytes32" },
+          { "internalType": "bytes32", "name": "eventHash", "type": "bytes32" }
+        ],
+        "internalType": "struct MedicineTracker.SupplyChainEvent[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "_batchId", "type": "string" },
+      { "internalType": "string", "name": "_medicineName", "type": "string" },
+      { "internalType": "string", "name": "_strength", "type": "string" },
+      { "internalType": "string", "name": "_mfgDate", "type": "string" },
+      { "internalType": "string", "name": "_expDate", "type": "string" },
+      { "internalType": "string", "name": "_location", "type": "string" },
+      { "internalType": "string", "name": "_actorName", "type": "string" },
+      { "internalType": "string", "name": "_notes", "type": "string" }
+    ],
+    "name": "registerBatch",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "_batchId", "type": "string" },
+      { "internalType": "enum MedicineTracker.SupplyChainStage", "name": "_newStage", "type": "uint8" },
+      { "internalType": "string", "name": "_newLocation", "type": "string" },
+      { "internalType": "string", "name": "_actorName", "type": "string" },
+      { "internalType": "string", "name": "_notes", "type": "string" }
+    ],
+    "name": "transferBatch",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
